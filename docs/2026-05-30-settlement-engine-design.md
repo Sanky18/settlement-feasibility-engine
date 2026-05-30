@@ -65,8 +65,9 @@ to all hard constraints. Each shape is the lexmin under its creditor flag:
   remaining balance. Balloon obeys its own floor and non-decreasing. We **prefer a
   balloon whenever it is allowed**, because deferring creditor cash to the end is
   exactly what maximizes early free cash for the fee — the balloon dominates a
-  staircase for our objective. The balloon is pushed to the **latest feasible**
-  cadence date.
+  staircase for our objective. The payment count `k` (hence where the balloon lands)
+  is chosen to best front-load the fee; ties — e.g. a zero fee — break toward fewer
+  payments.
 
 - **staircase** (neither flag): lexmin non-decreasing vector restricted to **at
   most `max_segments` distinct payment levels**. Early payments are held at the

@@ -1,3 +1,4 @@
+# The core engine (feasibility/) is pure Python standard library — no runtime deps.
+# These are dev/test/benchmark extras only.
 pytest>=8.0
-# The core task needs only the Python standard library. Add anything you reach
-# for (e.g. ortools, numpy) here.
+matplotlib>=3.5   # used only by benchmarks/ and docs/make_architecture.py

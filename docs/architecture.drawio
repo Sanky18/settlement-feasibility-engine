@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="architecture" id="settlement-engine">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="720" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Settlement Feasibility &amp; Fee Engine — Architecture" style="text;html=1;align=center;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="10" width="540" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Inputs -->
+        <mxCell id="client" value="client.json&#10;(SDA, drafts, ledger)" style="rounded=1;fillColor=#dbe7ff;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="offer" value="offer.json&#10;(settlement, balances)" style="rounded=1;fillColor=#dbe7ff;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rules" value="creditor_rules.json&#10;(floors, flags, fees)" style="rounded=1;fillColor=#dbe7ff;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="170" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="models" value="models.py&#10;loaders + date helpers" style="rounded=1;fillColor=#eef1f4;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="260" y="150" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="engine" value="engine.py&#10;evaluate_offer()" style="rounded=1;fillColor=#fff3cd;strokeColor=#34495e;fontStyle=1;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="460" y="150" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feasible" value="feasible?" style="rhombus;fillColor=#fff3cd;strokeColor=#34495e;fontStyle=1;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="690" y="140" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="solver" value="solver.py&#10;k-loop · shape select&#10;· best by fee-earliness" style="rounded=1;fillColor=#d6f5e3;strokeColor=#34495e;fontStyle=1;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="280" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Core helpers -->
+        <mxCell id="shapes" value="shapes.py&#10;floors/token/tiers&#10;even·balloon·staircase" style="rounded=1;fillColor=#d6f5e3;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fee" value="fee.py&#10;suffix-min&#10;front-loading" style="rounded=1;fillColor=#d6f5e3;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="220" y="420" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sim" value="simulator.py&#10;date-by-date ledger sim" style="rounded=1;fillColor=#d6f5e3;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="390" y="420" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cadence" value="cadence.py&#10;EOM / clamp cadence" style="rounded=1;fillColor=#d6f5e3;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="570" y="420" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="round" value="rounding.py&#10;round-half-up" style="rounded=1;fillColor=#d6f5e3;strokeColor=#34495e;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="740" y="420" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Outputs -->
+        <mxCell id="schedule" value="Part 1: schedule&#10;+ pay_shape_used" style="rounded=1;fillColor=#f5d6e6;strokeColor=#34495e;fontStyle=1;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="700" y="280" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="minima" value="Part 2: minima.py&#10;binary-search lump &amp;&#10;increment + guardrails" style="rounded=1;fillColor=#f5d6e6;strokeColor=#34495e;fontStyle=1;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="700" y="540" width="180" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="result" value="Result.to_dict() → JSON" style="rounded=1;fillColor=#f5d6e6;strokeColor=#34495e;fontStyle=1;whiteSpace=wrap;html=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="560" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="client" target="models"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="offer" target="models"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="rules" target="models"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="models" target="engine"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="engine" target="feasible"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="engine" target="solver"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell value="yes" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="feasible" target="schedule"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell value="no" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="feasible" target="minima"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="schedule" target="result"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="minima" target="result"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="html=1;endArrow=block;dashed=1;strokeColor=#7f8c8d;" edge="1" parent="1" source="solver" target="shapes"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="html=1;endArrow=block;dashed=1;strokeColor=#7f8c8d;" edge="1" parent="1" source="solver" target="fee"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="html=1;endArrow=block;dashed=1;strokeColor=#7f8c8d;" edge="1" parent="1" source="solver" target="sim"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell style="html=1;endArrow=block;dashed=1;strokeColor=#7f8c8d;" edge="1" parent="1" source="solver" target="cadence"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
