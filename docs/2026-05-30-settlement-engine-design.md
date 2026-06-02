@@ -1,7 +1,5 @@
 # Design — Settlement Feasibility & Fee Engine
 
-**Date:** 2026-05-30
-**Status:** Approved, implementing
 
 ## 1. Problem (condensed)
 
